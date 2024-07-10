@@ -1,0 +1,68 @@
+# Git and release stuff
+alias pr='gh pr create --base "main" --reviewer "giantswarm/team-shield" -a "@me"'
+alias main="git checkout main && git pull origin main"
+alias legacy="git checkout legacy && git pull origin legacy"
+alias release-patch='main && git checkout -b "main#release#patch" && git push origin "main#release#patch" && git checkout main && git branch -D "main#release#patch"'
+alias release-minor='main && git checkout -b "main#release#minor" && git push origin "main#release#minor" && git checkout main && git branch -D "main#release#minor"'
+alias release-major='main && git checkout -b "main#release#major" && git push origin "main#release#major" && git checkout main && git branch -D "main#release#major"'
+alias update-chart='git checkout -b "main#update-chart" && git push origin "main#update-chart" && git checkout main && git branch -D "main#update-chart"'
+
+# Teleport
+alias tkl="tsh kube login"
+alias t="tsh"
+alias tk="tsh kube"
+
+alias opslogin="opsctl login"
+
+# Kubectl admin stuff
+alias k="kubectl"
+alias kc="kubecolor"
+alias kcg="kubecolor get"
+alias kkn="kubens kyverno"
+alias knk="kubens kyverno"
+alias kns="kubens security-bundle"
+alias knp="kubens policy-exceptions"
+alias kng="kubens giantswarm"
+alias kn="kubens"
+alias kx="kubectx"
+alias klk="kubectl logs -n kyverno -l app.kubernetes.io/component=admission-controller -f"
+
+# Kubectl deletes
+alias kdd="kubectl delete"
+alias kdda="kubectl delete app"
+alias kdds="kubectl delete secret -l \"status=pending-upgrade\""
+alias kddsk="kubectl delete secret -l \"status=pending-upgrade\" -n kyverno"
+alias kddc="kubectl delete chart -n giantswarm"
+alias kddj="kubectl delete job --all"
+
+# Kubectl get/describe
+alias kd="kubectl describe"
+alias kdp="kubectl describe pod"
+alias kda="kubectl describe app"
+alias kga="kubectl get app"
+alias kgp="kubectl get pods"
+alias kg="kubectl get"
+alias kgd="kubectl get polexdraft -n policy-exceptions"
+alias kk="kubectl get pods -n kyverno"
+
+# Kubectl GS
+alias kgsga="kubectl gs get cluster -A"
+alias kgs="kubectl gs"
+alias kgsl="kubectl gs login --cluster-admin --certificate-group system:masters --certificate-ttl 8h --insecure-namespace"
+alias kgg="kubectl get app -n giantswarm"
+alias kgc="kubectl get chart -n giantswarm"
+
+# Misc
+alias kl="kubectl logs -f"
+alias kwebhooks='kubectl delete -l "webhook.kyverno.io/managed-by=kyverno" mutatingwebhookconfigurations.admissionregistration.k8s.io && kubectl delete -l "webhook.kyverno.io/managed-by=kyverno" validatingwebhookconfigurations.admissionregistration.k8s.io'
+alias restart="kubectl rollout restart deployment"
+alias restart-chart="kubectl rollout restart -n giantswarm deploy/chart-operator"
+alias notrunning="kubectl get pods -A | grep -vE \"Running|Completed\""
+alias an="annotate_chart"
+alias ank="annotate_chart kyverno"
+alias open="opsctl open"
+alias og="opsctl open -a grafana -i"
+
+alias ccc="/Users/franco/giantswarm/testing/create_capa_cluster.sh"
+
+alias ww="watch "
